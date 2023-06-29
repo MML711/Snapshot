@@ -1,0 +1,121 @@
+@import "../../style.scss";
+
+.leftBar {
+  @include themify($themes) {
+    // flex: 2;
+    width: 220px;
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    background-color: themed(bg);
+    color: themed(textColor);
+    transition: width 0.5s ease-out;
+
+    @include mobile {
+      width: 0;
+      span {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @include tablet {
+      width: 156px;
+    }
+
+    @media (width < 600px) {
+      width: 72px;
+      span {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &.off {
+      transition: width 0.5s ease-out;
+      width: 72px;
+
+      span {
+        display: none;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    .container {
+      padding: 20px;
+
+      @include mobile {
+        padding: 10px;
+        // width: 100%;
+      }
+
+      hr {
+        margin: 20px 0px;
+        border: none;
+        height: 0.5px;
+        background-color: themed(border);
+      }
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include mobile {
+          gap: 10px;
+        }
+
+        span {
+          font-size: 12px;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          &:hover,
+          &:focus {
+            background-color: themed(foc);
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          span {
+            font-size: 14px;
+          }
+        }
+
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          &:hover,
+          &:focus {
+            background-color: themed(foc);
+          }
+
+          img {
+            width: 30px;
+          }
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

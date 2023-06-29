@@ -1,0 +1,43 @@
+@import "../../style.scss";
+
+.friend {
+  @include themify($themes) {
+    background-color: themed(bg);
+    height: 190px;
+    width: 190px;
+    border-radius: 10px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 10px;
+        }
+
+        span {
+            font-weight: 500;
+            color: themed(textColor);
+        }
+
+        button {
+            border: none;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+            background-color: #5271ff;
+        }
+
+        .icon {
+            color: themed(textColor);
+        }
+    }
+
+}
+}

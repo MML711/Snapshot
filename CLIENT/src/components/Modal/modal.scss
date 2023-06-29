@@ -1,0 +1,45 @@
+@import "../../style.scss";
+
+.overlayStyles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.modalStyles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 50px;
+  width: 50%;
+  height: auto;
+  z-index: 999;
+
+  @include mobile {
+    width: 80%;
+    // height: 60%;
+  }
+
+  @include tablet {
+    width: 90%;
+    // height: 65%;
+  }
+
+  .spanStyles {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    font-size: 50px;
+    font-weight: bolder;
+    z-index: 1000;
+    cursor: pointer;
+    color: black;
+    user-select: none;
+  }
+}
