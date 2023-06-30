@@ -19,6 +19,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.set("trust proxy", 1);
+
 // middleware to acces req.body
 app.use(express.json());
 
