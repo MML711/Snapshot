@@ -41,9 +41,7 @@ const Share = () => {
 
   const mutation = useMutation(
     (newPost) => {
-      return makeRequest.post("/posts", newPost, {
-        withCredentials: true,
-      });
+      return makeRequest.post("/posts", newPost);
     },
     {
       onSuccess: () => {

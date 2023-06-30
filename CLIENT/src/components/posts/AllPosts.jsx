@@ -6,9 +6,7 @@ import { makeRequest } from "../../axios";
 const Posts = () => {
 
   const {isLoading, error, data} = useQuery(["allPosts"], () =>
-    makeRequest.get("/posts/all", {
-      withCredentials: true,
-    }).then((res) => {
+    makeRequest.get("/posts/all").then((res) => {
       return res.data;
     })
   );

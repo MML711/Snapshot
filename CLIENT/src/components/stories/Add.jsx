@@ -15,9 +15,7 @@ const Add = ({ setOpenUpdate, pic }) => {
 
   const mutation = useMutation(
     (newStory) => {
-      return makeRequest.post("/stories", newStory, {
-        withCredentials: true,
-      });
+      return makeRequest.post("/stories", newStory);
     },
     {
       onSuccess: () => {

@@ -25,9 +25,7 @@ const Profile = () => {
   const userId = +useLocation().pathname.split("/")[2];
 
   const { isLoading, error, data } = useQuery(["user"], () =>
-    makeRequest.get("/users/find/" + userId, {
-      withCredentials: true,
-    }).then((res) => {
+    makeRequest.get("/users/find/" + userId).then((res) => {
       return res.data;
     })
   );
@@ -35,9 +33,7 @@ const Profile = () => {
   const { isLoading: rIsLoading, data: relationshipData } = useQuery(
     ["relationship"],
     () =>
-      makeRequest.get("/relationships?followedUserId=" + userId, {
-        withCredentials: true,
-      }).then((res) => {
+      makeRequest.get("/relationships?followedUserId=" + userId).then((res) => {
         return res.data;
       })
   );
@@ -49,12 +45,8 @@ const Profile = () => {
   const mutation = useMutation(
     (following) => {
       if (following)
-        return makeRequest.delete("/relationships?userId=" + userId, {
-          withCredentials: true,
-        });
-      return makeRequest.post("/relationships", { userId }, {
-        withCredentials: true,
-      });
+        return makeRequest.delete("/relationships?userId=" + userId);
+      return makeRequest.post("/relationships", { userId });
     },
     {
       onSuccess: () => {

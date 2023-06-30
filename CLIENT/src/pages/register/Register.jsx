@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import { useState } from "react";
-import { makeRequest } from "../../axios";
+import axios from "axios";
 import Add from  "../../assets/Img/addAvatar.png"
 import AddPic from  "../../assets/Img/addPicture.png"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -98,9 +98,7 @@ const Register = () => {
 
       console.log(inputs);
 
-      await makeRequest.post("/auth/register", inputs, {
-        withCredentials: true,
-      });
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, inputs);
       navigate("/login");
     } catch (err) {
       setErr(err);

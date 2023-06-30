@@ -16,9 +16,7 @@ const RightBar = () => {
   const { isLoading: sIsLoading, data: suggestionData } = useQuery(
     ["suggestion"],
     () =>
-      makeRequest.get("/items/suggestions/" + currentUser.id, {
-        withCredentials: true,
-      }).then((res) => {
+      makeRequest.get("/items/suggestions/" + currentUser.id).then((res) => {
         return res.data;
       })
   );

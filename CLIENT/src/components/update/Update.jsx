@@ -33,9 +33,7 @@ const Update = ({ setOpenUpdate, user }) => {
 
   const mutation = useMutation(
     (user) => {
-      return makeRequest.put("/users", user, {
-        withCredentials: true,
-      });
+      return makeRequest.put("/users", user);
     },
     {
       onSuccess: () => {

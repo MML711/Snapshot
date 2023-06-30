@@ -22,9 +22,7 @@ const Post = ({ post }) => {
   // const [liked, setLiked] = useState(false);
 
   const { isLoading, error, data } = useQuery(["likes", post.id], () =>
-    makeRequest.get("/likes?postId=" + post.id, {
-      withCredentials: true,
-    }).then((res) => {
+    makeRequest.get("/likes?postId=" + post.id).then((res) => {
       return res.data;
     })
   );
@@ -33,12 +31,8 @@ const Post = ({ post }) => {
 
   const mutation = useMutation(
     (liked) => {
-      if (liked) return makeRequest.delete("/likes?postId=" + post.id, {
-        withCredentials: true,
-      });
-      return makeRequest.post("/likes", { postId: post.id }, {
-        withCredentials: true,
-      });
+      if (liked) return makeRequest.delete("/likes?postId=" + post.id);
+      return makeRequest.post("/likes", { postId: post.id });
     },
     {
       onSuccess: () => {
@@ -50,9 +44,7 @@ const Post = ({ post }) => {
 
   const deleteMutation = useMutation(
     (postId) => {
-      return makeRequest.delete("/posts/" + postId, {
-        withCredentials: true,
-      });
+      return makeRequest.delete("/posts/" + postId);
     },
     {
       onSuccess: () => {

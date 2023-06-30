@@ -11,10 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    // TO DO
-    const res = await makeRequest.post("/auth/login", inputs, {
-      withCredentials: true,
-    });
+    const res = await makeRequest.post("/auth/login", inputs);
 
     setCurrentUser(res.data);
 
@@ -25,9 +22,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     await signOut(auth);
-    await makeRequest.post("/auth/logout", {
-      withCredentials: true,
-    });
+    await makeRequest.post("/auth/logout");
     setCurrentUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("expiration");
@@ -36,9 +31,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const isUpdated = async (id) => {
-    const res = await makeRequest.get("/users/find/" + id, {
-      withCredentials: true,
-    });
+    const res = await makeRequest.get("/users/find/" + id);
 
     console.log("isUpdated");
     setCurrentUser(res.data);

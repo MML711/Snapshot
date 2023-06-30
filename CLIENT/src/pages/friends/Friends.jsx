@@ -9,9 +9,7 @@ const Friends = () => {
   const userId = +useLocation().pathname.split("/")[2];
 
   const { isLoading, error, data } = useQuery(["friend"], () =>
-    makeRequest.get("/items/friends/" + userId, {
-      withCredentials: true,
-    }).then((res) => {
+    makeRequest.get("/items/friends/" + userId).then((res) => {
       return res.data;
     })
   );
