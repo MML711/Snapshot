@@ -11,7 +11,9 @@ const Gallery = () => {
   const userId = +useLocation().pathname.split("/")[2];
 
   const { isLoading, error, data } = useQuery(["picture"], () =>
-    makeRequest.get("/items/pictures/" + userId).then((res) => {
+    makeRequest.get("/items/pictures/" + userId, {
+      withCredentials: true,
+    }).then((res) => {
       return res.data;
     })
   );

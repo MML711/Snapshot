@@ -22,7 +22,9 @@ const Friend = ({ user, sty }) => {
     ["relationship"],
     () =>
       makeRequest
-        .get("/relationships?followedUserId=" + user.userId)
+        .get("/relationships?followedUserId=" + user.userId, {
+          withCredentials: true,
+        })
         .then((res) => {
           return res.data;
         })
@@ -32,7 +34,9 @@ const Friend = ({ user, sty }) => {
 
   const mutation = useMutation(
     () => {
-      return makeRequest.post("/relationships", { userId: user.userId });
+      return makeRequest.post("/relationships", { userId: user.userId }, {
+        withCredentials: true,
+      });
     },
     {
       onSuccess: () => {

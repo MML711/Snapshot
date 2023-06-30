@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import { useState } from "react";
-import axios from "axios";
+import { makeRequest } from "../../axios";
 import Add from  "../../assets/Img/addAvatar.png"
 import AddPic from  "../../assets/Img/addPicture.png"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -59,8 +59,6 @@ const Register = () => {
       const date = new Date().getTime();
       const coverStorageRef = ref(storage, `CoverPicture/${inputs.username + "-" + date}-coverPic`);
       const profileStorageRef = ref(storage, `ProfilePicture/${inputs.username + "-" + date}-profilePic`);
-
-      await Promise.all([
       
       await uploadBytesResumable(coverStorageRef, coverPic).then(() => {
         getDownloadURL(coverStorageRef).then(async (downloadURL) => {
@@ -97,11 +95,12 @@ const Register = () => {
           }
         })
       })
-    ])
 
       console.log(inputs);
 
-      await axios.post("http://localhost:7000/api/auth/register", inputs);
+      await makeRequest.post("/auth/register", inputs, {
+        withCredentials: true,
+      });
       navigate("/login");
     } catch (err) {
       setErr(err);

@@ -30,7 +30,9 @@ const Comments = ({ postId }) => {
   // ];
 
   const {isLoading, error, data} = useQuery(["comments"], () => 
-    makeRequest.get("/comments?postId=" + postId).then((res) => {
+    makeRequest.get("/comments?postId=" + postId, {
+      withCredentials: true,
+    }).then((res) => {
       return res.data;
     })
   );
@@ -41,7 +43,9 @@ const Comments = ({ postId }) => {
 
   const mutation = useMutation(
     (newComments) => {
-      return makeRequest.post("/comments", newComments);
+      return makeRequest.post("/comments", newComments, {
+        withCredentials: true,
+      });
     },
     {
       onSuccess: () => {

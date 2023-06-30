@@ -15,7 +15,9 @@ const Story = ({ story }) => {
 
   const deleteMutation = useMutation(
     (storyId) => {
-      return makeRequest.delete("/stories/" + storyId);
+      return makeRequest.delete("/stories/" + storyId, {
+        withCredentials: true,
+      });
     },
     {
       onSuccess: () => {

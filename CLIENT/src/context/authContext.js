@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { makeRequest } from "../axios";
@@ -26,7 +25,9 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     await signOut(auth);
-    await makeRequest.post("/auth/logout");
+    await makeRequest.post("/auth/logout", {
+      withCredentials: true,
+    });
     setCurrentUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("expiration");
@@ -35,7 +36,9 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const isUpdated = async (id) => {
-    const res = await makeRequest.get("/users/find/" + id);
+    const res = await makeRequest.get("/users/find/" + id, {
+      withCredentials: true,
+    });
 
     console.log("isUpdated");
     setCurrentUser(res.data);
