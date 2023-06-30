@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, Set-Cookie"
   );
   res.header("Access-Control-Allow-Credentials", true);
   next();
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     origin: `${process.env.CLIENT_URL}`,
-    allowedHeaders: `Origin,X-Requested-With,Content-Type,Accept,Authorization`,
+    allowedHeaders: `Origin,X-Requested-With,Content-Type,Accept,Authorization,Set-Cookie`,
     credentials: true,
   })
 );
