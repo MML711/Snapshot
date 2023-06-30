@@ -19,13 +19,13 @@ export const addComment = (req, res) => {
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid");
 
-    const q = "INSERT INTO comments (`desc`, `createdAt`, `userId`, `postId`) VALUES (?)";
+    const q = "INSERT INTO comments (`desc`, `userId`, `postId`, `createdAt`) VALUES (?)";
 
     const values = [
         req.body.desc,
-        moment(Date.now()).format("YY-MM-DD HH:mm:ss"),
         userInfo.id,
         req.body.postId,
+        moment(Date.now()).format("YY-MM-DD HH:mm:ss"),
     ]
 
     db.query(q, [values], (err, data) => {

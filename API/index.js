@@ -10,34 +10,25 @@ import storyRoutes from "./routes/stories.js";
 import itemRequestRoutes from "./routes/itemRequests.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import multer from "multer";
+import dotenv from "dotenv";
+dotenv.config();
+const PORT = process.env.PORT || 7000;
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 
+// middleware to acces req.body
 app.use(express.json());
+
+
 app.use(cors({
-    origin: "http://localhost:3000"
+    origin: `${process.env.CLIENT_URL}`
 }));
+
 app.use(cookieParser());
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../client/public/upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  const file = req.file;
-  res.status(200).json(file.filename);
-});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/comments", commentRoutes);
@@ -48,6 +39,6 @@ app.use("/api/stories", storyRoutes);
 app.use("/api/relationships", relationshipRoutes);
 app.use("/api/items", itemRequestRoutes);
 
-app.listen(7000, () => {
-  console.log("connected to server");
+app.listen(PORT, () => {
+  console.log(`API Server now listening on port ${PORT}`);
 });
