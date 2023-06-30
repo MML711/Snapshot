@@ -21,6 +21,10 @@ import Gallery from "./pages/gallery/Gallery";
 import Friends from "./pages/friends/Friends";
 
 function App() {
+
+  console.log(process.env.REACT_APP_SERVER_URL);
+  console.log(typeof process.env.REACT_APP_SERVER_URL);
+
   const { currentUser, logout } = useContext(AuthContext);
 
   const { darkMode } = useContext(DarkModeContext);

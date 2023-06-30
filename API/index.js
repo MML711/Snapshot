@@ -24,7 +24,7 @@ app.use(express.json());
 
 
 app.use(cors({
-    origin: "*",
+    origin: `${process.env.CLIENT_URL}`
 }));
 
 app.use(cookieParser());
