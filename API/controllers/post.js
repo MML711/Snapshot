@@ -8,6 +8,7 @@ import moment from "moment";
 export const getPosts = (req, res) => {
   const userId = req.query.userId;
 
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
@@ -30,6 +31,7 @@ export const getPosts = (req, res) => {
 };
 
 export const addPost = (req, res) => {
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
@@ -54,6 +56,7 @@ export const addPost = (req, res) => {
 };
 
 export const deletePost = (req, res) => {
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 

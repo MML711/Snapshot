@@ -42,6 +42,8 @@ function App() {
   const now = new Date();
   const duration = expirationDate.getTime() - now.getTime();
 
+  console.log(duration);
+
   useEffect(() => {
     setTimeout(() => {
       logout();

@@ -12,7 +12,8 @@ export const getRelationships = (req, res) => {
 };
 
 export const addRelationship = (req, res) => {
-    const token = req.cookies.accessToken;
+  console.log(req.cookies);
+  const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -33,7 +34,8 @@ export const addRelationship = (req, res) => {
 }
 
 export const deleteRelationship = (req, res) => {
-    const token = req.cookies.accessToken;
+  console.log(req.cookies);
+  const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {

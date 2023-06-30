@@ -14,6 +14,7 @@ export const getUser = (req, res) => {
 };
 
 export const updateUser = (req, res) => {
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 

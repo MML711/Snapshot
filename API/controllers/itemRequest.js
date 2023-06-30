@@ -4,6 +4,7 @@ import { db } from "../connect.js";
 export const getPictures = (req, res) => {
   const userId = req.params.userId;
 
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
@@ -22,6 +23,7 @@ export const getPictures = (req, res) => {
 export const getFriends = (req, res) => {
   const userId = req.params.userId;
 
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
@@ -41,6 +43,7 @@ export const getFriends = (req, res) => {
 export const getSuggestions = (req, res) => {
   const userId = req.params.userId;
 
+  console.log(req.cookies);
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 

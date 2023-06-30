@@ -11,7 +11,8 @@ export const getLikes = (req, res) => {
 };
 
 export const addLike = (req, res) => {
-    const token = req.cookies.accessToken;
+  console.log(req.cookies);
+  const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -32,7 +33,8 @@ export const addLike = (req, res) => {
 }
 
 export const deleteLike = (req, res) => {
-    const token = req.cookies.accessToken;
+  console.log(req.cookies);
+  const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
