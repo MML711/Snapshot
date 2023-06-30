@@ -14,20 +14,27 @@ import dotenv from "dotenv";
 dotenv.config();
 const PORT = process.env.PORT || 7000;
 
+// middleware to acces req.body
+app.use(express.json());
+app.use(cookieParser());
+
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 
-// middleware to acces req.body
-app.use(express.json());
-
-
-app.use(cors({
-    origin: `${process.env.CLIENT_URL}`
-}));
-
-app.use(cookieParser());
+app.use(
+  cors({
+    origin: `${process.env.CLIENT_URL}`,
+    allowedHeaders: `Origin,X-Requested-With,Content-Type,Accept,Authorization`,
+    credentials: true,
+  })
+);
 
 
 app.use("/api/auth", authRoutes);
