@@ -61,7 +61,9 @@ export const login = (req, res) => {
       .cookie("accessToken", token, {
         httpOnly: true,
         sameSite: "none",
-        // secure: true,
+        secure: true,
+        domain: ".app.localhost",
+        maxAge: 15 * 60 * 60 * 1000,
       })
       .status(200)
       .json(others);
