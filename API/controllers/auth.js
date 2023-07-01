@@ -62,7 +62,7 @@ export const login = (req, res) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        domain: ".app.localhost",
+        domain: ".localhost",
         maxAge: 15 * 60 * 60 * 1000,
       })
       .status(200)
