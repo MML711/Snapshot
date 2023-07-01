@@ -60,9 +60,12 @@ export const login = (req, res) => {
     res
       .cookie("accessToken", token, {
         httpOnly: true,
+        sameSite: "none",
+        // secure: true,
       })
       .status(200)
       .json(others);
+      // req.cookie.save((err) => console.log(err));
   });
 };
 
