@@ -61,9 +61,9 @@ const Register = () => {
       const profileStorageRef = ref(storage, `ProfilePicture/${inputs.username + "-" + date}-profilePic`);
       
       await uploadBytesResumable(coverStorageRef, coverPic).then(() => 
-        getDownloadURL(coverStorageRef).then(async (downloadURL) => {
-          inputs.coverPic = downloadURL;
-        })
+        getDownloadURL(coverStorageRef).then(async (downloadURL) => 
+          inputs.coverPic = downloadURL
+        )
       ),
 
       await uploadBytesResumable(profileStorageRef, profilePic).then(() => 
