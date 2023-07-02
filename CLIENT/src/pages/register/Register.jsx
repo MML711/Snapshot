@@ -60,13 +60,13 @@ const Register = () => {
       const coverStorageRef = ref(storage, `CoverPicture/${inputs.username + "-" + date}-coverPic`);
       const profileStorageRef = ref(storage, `ProfilePicture/${inputs.username + "-" + date}-profilePic`);
       
-      await uploadBytesResumable(coverStorageRef, coverPic).then(() => 
-        getDownloadURL(coverStorageRef).then(async (downloadURL) => 
-          inputs.coverPic = downloadURL
-        )
-      ),
+      const c = await uploadBytesResumable(coverStorageRef, coverPic).then(() => {
+        getDownloadURL(coverStorageRef).then(async (downloadURL) => {
+          inputs.coverPic = downloadURL;
+        })
+      })
 
-      await uploadBytesResumable(profileStorageRef, profilePic).then(() => 
+      const p = await uploadBytesResumable(profileStorageRef, profilePic).then(() => {
         getDownloadURL(profileStorageRef).then(async (downloadURL) => {
           try {
              //Update profile
@@ -94,7 +94,7 @@ const Register = () => {
             // setLoading(false);
           }
         })
-      )
+      })
 
       console.log(inputs);
 
