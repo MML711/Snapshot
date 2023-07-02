@@ -8,8 +8,8 @@ import moment from "moment";
 export const getPosts = (req, res) => {
   const userId = req.query.userId;
 
-  console.log(req.cookies);
-  const token = req.cookies.accessToken;
+  const token = req.headers.accesstoken;
+  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -31,8 +31,8 @@ export const getPosts = (req, res) => {
 };
 
 export const addPost = (req, res) => {
-  console.log(req.cookies);
-  const token = req.cookies.accessToken;
+  const token = req.headers.accesstoken;
+  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -56,8 +56,8 @@ export const addPost = (req, res) => {
 };
 
 export const deletePost = (req, res) => {
-  console.log(req.cookies);
-  const token = req.cookies.accessToken;
+  const token = req.headers.accesstoken;
+  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {

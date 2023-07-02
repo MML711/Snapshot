@@ -13,8 +13,8 @@ export const getComments = (req, res) => {
 };
 
 export const addComment = (req, res) => {
-  console.log(req.cookies);
-  const token = req.cookies.accessToken;
+  const token = req.headers.accesstoken;
+  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -37,8 +37,8 @@ export const addComment = (req, res) => {
 };
 
 export const deleteComment = (req, res) => {
-  console.log(req.cookies);
-  const token = req.cookies.accessToken;
+  const token = req.headers.accesstoken;
+  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {

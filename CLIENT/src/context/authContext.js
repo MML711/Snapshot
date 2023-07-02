@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { makeRequest } from "../axios";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -11,9 +12,11 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await makeRequest.post("/auth/login", inputs);
+    const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, inputs);
 
-    setCurrentUser(res.data);
+    localStorage.setItem("accessToken", res.data.accessToken);
+    setCurrentUser(res.data.info);
+    console.log(currentUser);
 
     const expiration = new Date();
     expiration.setHours(expiration.getHours() + 15);
@@ -25,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     await makeRequest.post("/auth/logout");
     setCurrentUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("expiration");
     console.log("clicked logout");
     console.log(currentUser);

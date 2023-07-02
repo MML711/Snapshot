@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-
 export const register = (req, res) => {
   // CHECK IF USER EXISTS
 
@@ -53,26 +52,18 @@ export const login = (req, res) => {
     if (!checkedPassword)
       return res.status(400).json("Wrong email or password");
 
-    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET_KEY, { expiresIn: "15h" });
+    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "15h",
+    });
 
     const { password, ...others } = data[0];
 
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-        domain: process.env.CLIENT_DOMAIN,
-        maxAge: 15 * 60 * 60 * 1000,
-      })
-      .status(200)
-      .json(others);
+    console.log(others);
+
+    res.status(200).json({ accessToken: token, info: { ...others } });
   });
 };
 
 export const logout = (req, res) => {
-    res.clearCookie("accessToken", {
-        secure: true,
-        sameSite: "none"
-    }).status(200).json("User has been logged out")
+  res.status(200).json("User has been logged out");
 };

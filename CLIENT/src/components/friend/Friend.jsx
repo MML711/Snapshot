@@ -3,7 +3,6 @@ import "./friend.scss";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
-import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
