@@ -32,7 +32,7 @@ const Search = () => {
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
       });
-    } catch (err) {
+    } catch (error) {
       setErr(true);
     }
   };
@@ -85,8 +85,9 @@ const Search = () => {
 
       setUser(null);
       setUsername("");
-    } catch (err) {
-      setFireErr(err);
+    } catch (error) {
+      setFireErr(error);
+      console.log(fireErr);
     }
   };
 

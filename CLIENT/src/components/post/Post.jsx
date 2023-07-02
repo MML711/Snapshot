@@ -21,7 +21,7 @@ const Post = ({ post }) => {
   // //TEMPORARY
   // const [liked, setLiked] = useState(false);
 
-  const { isLoading, error, data } = useQuery(["likes", post.id], () =>
+  const { isLoading, data } = useQuery(["likes", post.id], () =>
     makeRequest.get("/likes?postId=" + post.id).then((res) => {
       return res.data;
     })

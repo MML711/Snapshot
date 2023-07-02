@@ -48,7 +48,7 @@ function App() {
     setTimeout(() => {
       logout();
     }, duration);
-  }, [logout]);
+  }, [logout, duration]);
 
   const Layout = () => {
     return (

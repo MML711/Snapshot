@@ -8,8 +8,6 @@ import { AuthContext } from "../../context/authContext";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 const Friend = ({ user, sty }) => {
-  const page = useLocation().pathname.split("/")[1];
-
   const { currentUser } = useContext(AuthContext);
 
   /* const { isLoading, error, data } = useQuery(["friend"], () =>

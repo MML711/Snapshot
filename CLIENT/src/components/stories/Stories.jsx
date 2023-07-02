@@ -11,7 +11,7 @@ const Stories = () => {
 
   const { currentUser } = useContext(AuthContext);
 
-  const { isLoading, error, data } = useQuery(["stories"], () =>
+  const { isLoading, data } = useQuery(["stories"], () =>
     makeRequest.get("/stories").then((res) => {
       return res.data;
     })
@@ -24,13 +24,17 @@ const Stories = () => {
         <span>{currentUser.name}</span>
         <button onClick={() => setOpenUpdate(true)}>+</button>
       </div>
-      <div className="container">
-        <div className="wrapper">
-          {data?.map((story) => (
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <div className="container">
+          <div className="wrapper">
+            {data?.map((story) => (
               <Story key={story.id} story={story} />
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       {openUpdate && (
         <Add setOpenUpdate={setOpenUpdate} pic={currentUser.profilePic} />
       )}

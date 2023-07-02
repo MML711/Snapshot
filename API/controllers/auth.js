@@ -62,12 +62,11 @@ export const login = (req, res) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        domain: ".localhost",
+        domain: process.env.CLIENT_DOMAIN,
         maxAge: 15 * 60 * 60 * 1000,
       })
       .status(200)
       .json(others);
-      // req.cookie.save((err) => console.log(err));
   });
 };
 

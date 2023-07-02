@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Img from "../../assets/Img/img.png";
-import Attach from "../../assets/Img/attach.png";
+// import Attach from "../../assets/Img/attach.png";
 import { FirebaseAuthContext } from "../../context/firebaseAuthContext";
 import { ChatContext } from "../../context/chatContext";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";

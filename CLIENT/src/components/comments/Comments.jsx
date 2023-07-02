@@ -29,7 +29,7 @@ const Comments = ({ postId }) => {
   //   },
   // ];
 
-  const { isLoading, error, data } = useQuery(["comments"], () =>
+  const { isLoading, data } = useQuery(["comments"], () =>
     makeRequest.get("/comments?postId=" + postId).then((res) => {
       return res.data;
     })

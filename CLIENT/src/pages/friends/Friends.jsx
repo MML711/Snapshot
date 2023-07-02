@@ -1,14 +1,14 @@
 import React from "react";
 import "./friends.scss";
 import Friend from "../../components/friend/Friend";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
 
 const Friends = () => {
   const userId = +useLocation().pathname.split("/")[2];
 
-  const { isLoading, error, data } = useQuery(["friend"], () =>
+  const { isLoading, data } = useQuery(["friend"], () =>
     makeRequest.get("/items/friends/" + userId).then((res) => {
       return res.data;
     })

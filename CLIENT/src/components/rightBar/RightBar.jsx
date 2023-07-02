@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "./rightBar.scss";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
 import { DarkModeContext } from "../../context/darkModeContext";

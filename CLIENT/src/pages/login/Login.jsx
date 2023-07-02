@@ -30,15 +30,16 @@ const Login = () => {
     try {
       try {
         await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
-      } catch (err) {
+      } catch (error) {
         setFireErr(err.response);
+        console.log(fireErr);
       }
 
       await login(inputs);
       navigate("/")
-    } catch (err) {
+    } catch (error) {
+      setErr(error);
       console.log(err);
-      setErr(err);
     }
   };
 
