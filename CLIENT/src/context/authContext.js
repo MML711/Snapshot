@@ -16,39 +16,29 @@ export const AuthContextProvider = ({ children }) => {
 
     localStorage.setItem("accessToken", res.data.accessToken);
     setCurrentUser(res.data.info);
-    console.log(currentUser);
 
     const expiration = new Date();
     expiration.setHours(expiration.getHours() + 15);
-    localStorage.setItem("expiration", expiration.toISOString());
+    localStorage.setItem("snap_expiration", expiration.toISOString());
   };
 
   const logout = async () => {
     await signOut(auth);
     await makeRequest.post("/auth/logout");
     setCurrentUser(null);
+
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("expiration");
-    console.log("clicked logout");
-    console.log(currentUser);
+    localStorage.removeItem("snap_expiration");
   };
 
   const isUpdated = async (id) => {
     const res = await makeRequest.get("/users/find/" + id);
-
-    console.log("isUpdated");
     setCurrentUser(res.data);
   };
 
-  /* // TODO: FIND A BETTER WAY
-  useEffect(() => {
-    currentUser && logout();
-  }, []);
- */
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
-    console.log(currentUser);
   }, [currentUser]);
 
   return (

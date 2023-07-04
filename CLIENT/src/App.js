@@ -22,9 +22,6 @@ import Friends from "./pages/friends/Friends";
 
 function App() {
 
-  console.log(process.env.REACT_APP_SERVER_URL);
-  console.log(typeof process.env.REACT_APP_SERVER_URL);
-
   const { currentUser, logout } = useContext(AuthContext);
 
   const { darkMode } = useContext(DarkModeContext);
@@ -37,12 +34,10 @@ function App() {
     setSide(!side);
   };
 
-  const storedExpirationDate = localStorage.getItem('expiration');
+  const storedExpirationDate = localStorage.getItem('snap_expiration');
   const expirationDate = new Date(storedExpirationDate);
   const now = new Date();
   const duration = expirationDate.getTime() - now.getTime();
-
-  console.log(duration);
 
   useEffect(() => {
     setTimeout(() => {

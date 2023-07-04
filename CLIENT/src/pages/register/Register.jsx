@@ -32,15 +32,23 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(e);
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (e.target.files) {
-      setProfilePic(e.target.files[0])
+      e.target.name === "profilePic" ? setProfilePic(e.target.files[0]) : setCoverPic(e.target.files[0])
       console.log(profilePic);
-      setCoverPic(e.target.files[1])
       console.log(coverPic);
     } 
+    console.log(profilePic);
+    console.log(coverPic);
   };
+
+  /* const handlePic = (e) => {
+    if (e.target.files) {
+      e.target.name === "profilePic" ? setProfilePic(e.target.files[0]) : setCoverPic(e.target.files[0])
+      console.log(profilePic);
+      console.log(coverPic);
+    }
+  } */
 
   // 1. Profile
   // 2. Cover
@@ -60,13 +68,13 @@ const Register = () => {
       const coverStorageRef = ref(storage, `CoverPicture/${inputs.username + "-" + date}-coverPic`);
       const profileStorageRef = ref(storage, `ProfilePicture/${inputs.username + "-" + date}-profilePic`);
       
-      const c = await uploadBytesResumable(coverStorageRef, coverPic).then(() => {
+      await uploadBytesResumable(coverStorageRef, coverPic).then(() => {
         getDownloadURL(coverStorageRef).then(async (downloadURL) => {
           inputs.coverPic = downloadURL;
         })
       })
 
-      const p = await uploadBytesResumable(profileStorageRef, profilePic).then(() => {
+      await uploadBytesResumable(profileStorageRef, profilePic).then(() => {
         getDownloadURL(profileStorageRef).then(async (downloadURL) => {
           try {
              //Update profile
@@ -140,12 +148,12 @@ const Register = () => {
               onChange={handleChange}
             />
             <div className="pic">
-              <input required style={{ display: "none" }} type="file" id="file1" onChange={handleChange} />
+              <input required style={{ display: "none" }} type="file" id="file1" name="profilePic" onChange={handleChange} />
               <label htmlFor="file1">
               <img src={Add} alt="" />
               <span>Add a profile picture</span>
               </label>
-              <input required style={{ display: "none" }} type="file" id="file2" onChange={handleChange} />
+              <input required style={{ display: "none" }} type="file" id="file2" name="coverPic" onChange={handleChange} />
               <label htmlFor="file2">
               <img src={AddPic} alt="" />
               <span>Add a cover picture</span>

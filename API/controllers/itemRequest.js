@@ -5,7 +5,6 @@ export const getPictures = (req, res) => {
   const userId = req.params.userId;
 
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -24,7 +23,6 @@ export const getFriends = (req, res) => {
   const userId = req.params.userId;
 
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -44,7 +42,6 @@ export const getSuggestions = (req, res) => {
   const userId = req.params.userId;
 
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {

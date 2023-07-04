@@ -4,7 +4,6 @@ import moment from "moment";
 
 export const getStories = (req, res) => {
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in!");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -22,7 +21,6 @@ export const getStories = (req, res) => {
 
 export const addStory = (req, res) => {
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in!");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -44,7 +42,6 @@ export const addStory = (req, res) => {
 
 export const deleteStory = (req, res) => {
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in!");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {

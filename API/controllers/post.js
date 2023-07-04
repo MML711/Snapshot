@@ -9,7 +9,6 @@ export const getPosts = (req, res) => {
   const userId = req.query.userId;
 
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -32,7 +31,6 @@ export const getPosts = (req, res) => {
 
 export const addPost = (req, res) => {
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
@@ -57,7 +55,6 @@ export const addPost = (req, res) => {
 
 export const deletePost = (req, res) => {
   const token = req.headers.accesstoken;
-  console.log(req.headers);
   if (!token) return res.status(401).json("Not logged in");
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
