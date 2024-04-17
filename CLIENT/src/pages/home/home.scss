@@ -3,7 +3,7 @@
 .home {
   @include themify($themes) {
     background-color: themed(bgSoft);
-    padding: 20px 70px;
+    padding: 30px;
     min-height: 100vh;
     // transition: all 0.5s ease-out;
 
